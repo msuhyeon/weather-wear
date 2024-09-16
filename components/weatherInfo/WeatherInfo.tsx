@@ -4,11 +4,28 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { getWeatherData } from "@/app/utils/weather";
 
-interface WeatherData {
+interface CurrentData {
   temp: number;
   humidity: number;
   weather: Object;
-  daily: Object;
+}
+
+interface DailyData {
+  temp: {
+    min: number;
+    max: number;
+  };
+  feels_like: {
+    morn: number;
+    night: number;
+  };
+}
+
+interface DailyData extends Array<DailyData> {}
+
+interface WeatherData {
+  current: CurrentData | null;
+  daily: DailyData | null;
 }
 
 const WeatherInfo = () => {
@@ -38,7 +55,7 @@ const WeatherInfo = () => {
     const fetchWeather = async (lat: number, lon: number) => {
       try {
         const { current, daily } = await getWeatherData(coordinates);
-        setWeather(current);
+        setWeather({ current, daily });
       } catch (err: any) {
         setError(err.message);
       }
@@ -56,10 +73,23 @@ const WeatherInfo = () => {
         <div className={styles.weatherInfo}>
           <h2 className={styles.title}>현재 날씨</h2>
           <p className={styles.info}>
-            {weather && Math.round(weather.temp)} °C
+            {weather && Math.round(weather.current?.temp ?? 0)} °C
           </p>
           <p className={styles.info}>맑음</p>
-          <p className={styles.info}>34°C / 24°C 체감 33°C</p>
+          <p className={styles.info}>
+            {weather?.daily && Math.round(weather.daily[0]?.temp?.max ?? 0)} °C
+            / {weather?.daily && Math.round(weather.daily[0]?.temp?.min ?? 0)}{" "}
+            °C
+          </p>
+          <p className={styles.info}>
+            <span>체감</span>
+            {weather?.daily &&
+              Math.round(weather.daily[0]?.feels_like?.morn ?? 0)}{" "}
+            °C /{" "}
+            {weather?.daily &&
+              Math.round(weather.daily[0]?.feels_like?.night ?? 0)}{" "}
+            °C
+          </p>
         </div>
       </div>
     </div>

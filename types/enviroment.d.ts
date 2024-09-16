@@ -1,6 +1,7 @@
 declare namespace NodeJS {
   interface ProcessEnv {
     API_KEY: string;
-    // 다른 환경 변수들도 여기에 추가
+    NEXT_PUBLIC_SUPABASE_URL: string;
+    NEXT_PUBLIE_SUPABASE_ANON_KEY: string;
   }
 }

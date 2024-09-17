@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./styles.module.css";
 import WeatherInfo from "@/components/WeatherInfo/WeatherInfo";
 
@@ -9,9 +10,9 @@ export default function Home() {
       </header>
       <main className={styles.content}>
         <WeatherInfo />
-        <button className={styles.recommendButton}>
+        <Link href="/recommendation" className={styles.recommendButton}>
           날씨에 맞는 옷차림 추천 받기 👀
-        </button>
+        </Link>
       </main>
     </div>
   );

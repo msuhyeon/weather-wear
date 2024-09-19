@@ -32,6 +32,7 @@ const WeatherInfo = () => {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [coordinates, setCoordinates] = useState({ lat: 0, lon: 0 });
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // 1. geolocation API를 호출하여 현재 위치 조회
@@ -52,20 +53,37 @@ const WeatherInfo = () => {
 
   useEffect(() => {
     // 2. 가져온 현재 위치를 바탕으로 날씨 조회 API 호출
-    const fetchWeather = async (lat: number, lon: number) => {
+    const fetchWeatherData = async (lat: number, lon: number) => {
       try {
         const { current, daily } = await getWeatherData(coordinates);
         setWeather({ current, daily });
       } catch (err: any) {
         setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
 
     if (coordinates.lat !== 0 && coordinates.lon !== 0) {
-      fetchWeather(coordinates.lat, coordinates.lon);
+      fetchWeatherData(coordinates.lat, coordinates.lon);
     }
   }, [coordinates]);
 
+  if (loading) {
+    return (
+      <div className={styles.container}>
+        <div className={`${styles.weatherCard} ${styles.skeletonWrapper}`}>
+          <div className={styles.loadingContent}>
+            <div className={styles.loadingText}>날씨 정보를 불러오는 중...</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div className={styles.error}>Error: {error}</div>;
+  }
   return (
     <div className={styles.container}>
       <div className={styles.weatherCard}>

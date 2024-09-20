@@ -166,6 +166,7 @@ a {
 }
 
 button {
+  border-width: 1px;
   cursor: pointer;
 }
 

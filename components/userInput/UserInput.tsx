@@ -1,52 +1,62 @@
-"use client";
+import { useState } from "react";
+import styles from "./styles.module.css";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-
-const UserPreferencesForm = () => {
+export default function UserInputForm() {
   const [gender, setGender] = useState("");
   const [coldSensitivity, setColdSensitivity] = useState("");
-  const router = useRouter();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    localStorage.setItem(
-      "userPreferences",
-      JSON.stringify({ gender, coldSensitivity })
-    );
-    router.push("/recommendation");
-  };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>
-          Gender:
-          <select value={gender} onChange={(e) => setGender(e.target.value)}>
-            <option value="">Select...</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </label>
-      </div>
-      <div>
-        <label>
-          Cold Sensitivity:
-          <select
-            value={coldSensitivity}
-            onChange={(e) => setColdSensitivity(e.target.value)}
+    <form className={styles.form}>
+      <div className={styles.questionGroup}>
+        <h2>당신의 성별은?</h2>
+        <div className={styles.buttonGroup}>
+          <button
+            type="button"
+            className={gender === "male" ? styles.selected : ""}
+            onClick={() => setGender("male")}
           >
-            <option value="">Select...</option>
-            <option value="low">I don't get cold easily</option>
-            <option value="medium">I'm average</option>
-            <option value="high">I get cold easily</option>
-          </select>
-        </label>
+            남성
+          </button>
+          <button
+            type="button"
+            className={gender === "female" ? styles.selected : ""}
+            onClick={() => setGender("female")}
+          >
+            여성
+          </button>
+        </div>
       </div>
-      <button type="submit">Save Preferences</button>
+
+      <div className={styles.questionGroup}>
+        <h2>추위에 얼마나 민감하세요?</h2>
+        <div className={styles.buttonGroup}>
+          <button
+            type="button"
+            className={coldSensitivity === "high" ? styles.selected : ""}
+            onClick={() => setColdSensitivity("high")}
+          >
+            추위를 잘 타요
+          </button>
+          <button
+            type="button"
+            className={coldSensitivity === "medium" ? styles.selected : ""}
+            onClick={() => setColdSensitivity("medium")}
+          >
+            보통이에요
+          </button>
+          <button
+            type="button"
+            className={coldSensitivity === "low" ? styles.selected : ""}
+            onClick={() => setColdSensitivity("low")}
+          >
+            추위를 덜 타요
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" className={styles.submitButton}>
+        옷차림 추천 받기
+      </button>
     </form>
   );
-};
-
-export default UserPreferencesForm;
+}

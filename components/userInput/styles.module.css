@@ -1,0 +1,55 @@
+/* UserInputForm.module.css */
+
+.form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.questionGroup {
+  margin-bottom: 30px;
+}
+
+.questionGroup h2 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.buttonGroup button {
+  padding: 12px 20px;
+  border: 2px solid #007bff;
+  border-radius: 25px;
+  background-color: white;
+  color: #007bff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.buttonGroup button.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 25px;
+  background-color: #28a745;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #218838;
+}

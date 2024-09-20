@@ -20,29 +20,32 @@
   gap: 10px;
 }
 
+.buttonGroup.row {
+  flex-direction: column;
+}
+
 .buttonGroup button {
   width: 100%;
   padding: 12px 20px;
-  border: 2px solid #007bff;
+  border: 2px solid #f05050;
   border-radius: 25px;
   background-color: white;
-  color: #007bff;
+  color: #f05050;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .buttonGroup button.selected {
-  background-color: #007bff;
+  background-color: #f05050;
   color: white;
 }
-
 .submitButton {
   width: 100%;
   padding: 15px;
   border: none;
   border-radius: 25px;
-  background-color: #28a745;
+  background-color: #f05050;
   color: white;
   font-size: 1.1rem;
   cursor: pointer;
@@ -50,5 +53,5 @@
 }
 
 .submitButton:hover {
-  background-color: #218838;
+  background-color: #ca4141;
 }

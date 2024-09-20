@@ -20,6 +20,7 @@
 .recommendButton {
   display: inline-block;
   background-color: #007bff;
+  background-color: #f05050;
   color: white;
   padding: 0.8rem 1.5rem;
   border-radius: 25px;
@@ -34,6 +35,7 @@
 
 .recommendButton:hover {
   background-color: #0056b3;
+  background-color: #ca4141;
 }
 
 .content {

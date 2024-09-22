@@ -36,6 +36,7 @@
   width: 100%;
   box-sizing: border-box;
   border: none;
+  margin-top: 20px;
 }
 
 .recommendButton:hover {
@@ -62,6 +63,7 @@
 }
 
 .skeletonWrapper {
+  width: 100%;
   animation: skeleton-loading 1s linear infinite alternate;
   align-items: center !important;
   justify-content: center !important;

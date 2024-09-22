@@ -14,7 +14,7 @@ type ColdSensitivity = "high" | "medium" | "low" | "";
 const Recommendation: React.FC = () => {
   const [gender, setGender] = useState<Gender>("");
   const [coldSensitivity, setColdSensitivity] = useState<ColdSensitivity>("");
-  const [loading, setLoading] = useState<boolean>(false);
+  // const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -48,7 +48,7 @@ const Recommendation: React.FC = () => {
       console.error("Error fetching recommendation:", error);
       alert("추천을 가져오는 데 문제가 발생했습니다. 다시 시도해주세요.");
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 

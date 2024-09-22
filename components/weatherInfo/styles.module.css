@@ -27,7 +27,7 @@
 
 .weatherCard {
   display: flex;
-  gap: 20px;
+  gap: 17px;
   align-items: flex-start;
   background-color: #fff;
   padding: 20px;
@@ -42,17 +42,22 @@
   border: 2px dotted black;
 }
 
-.weatherInfo {
+.weatherInfoWrap {
   flex-grow: 1;
 }
 
 .title {
-  font-size: 24px;
+  font-size: 20px;
   margin-top: 0;
   margin-bottom: 10px;
 }
 
+.currentTemp {
+  font-size: 30px;
+  margin: 0;
+}
+
 .info {
-  font-size: 16px;
+  font-size: 15px;
   margin: 5px 0;
 }

@@ -7,30 +7,18 @@ import { getWeatherData } from "@/app/utils/weather";
 
 interface WeatherCondition {
   icon: string;
+  description: string;
 }
 
 interface CurrentData {
   temp: number;
   humidity: number;
   weather: WeatherCondition[];
+  feels_like: number;
 }
-
-interface DailyData {
-  temp: {
-    min: number;
-    max: number;
-  };
-  feels_like: {
-    morn: number;
-    night: number;
-  };
-}
-
-interface DailyData extends Array<DailyData> {}
 
 interface WeatherData {
   current: CurrentData | null;
-  daily: DailyData | null;
 }
 
 const WeatherInfo = () => {
@@ -60,8 +48,8 @@ const WeatherInfo = () => {
     // 2. 가져온 현재 위치를 바탕으로 날씨 조회 API 호출
     const fetchWeatherData = async (lat: number, lon: number) => {
       try {
-        const { current, daily } = await getWeatherData(coordinates);
-        setWeatherData({ current, daily });
+        const { current } = await getWeatherData(coordinates);
+        setWeatherData({ current });
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -101,27 +89,29 @@ const WeatherInfo = () => {
           placeholder="blur"
           unoptimized
         />
-        <div className={styles.weatherInfo}>
+        <div className={styles.weatherInfoWrap}>
           <h2 className={styles.title}>현재 날씨</h2>
-          <p className={styles.info}>
+          <p className={styles.currentTemp}>
             {weatherData && Math.round(weatherData.current?.temp ?? 0)} °C
           </p>
-          <p className={styles.info}>맑음</p>
-          <p className={styles.info}>
+          <div className={styles.currentWeather}>
+            <p className={styles.info}>
+              {weatherData?.current?.weather[0].description}
+            </p>
+          </div>
+          {/* 오늘 최저, 최고 기온 */}
+          {/* <p className={styles.info}>
             {weatherData?.daily &&
-              Math.round(weatherData.daily[0]?.temp?.max ?? 0)}{" "}
+              Math.round(weatherData.daily[0]?.temp?.max ?? 0)}
             °C /{" "}
             {weatherData?.daily &&
-              Math.round(weatherData.daily[0]?.temp?.min ?? 0)}{" "}
+              Math.round(weatherData.daily[0]?.temp?.min ?? 0)}
             °C
-          </p>
+          </p> */}
           <p className={styles.info}>
-            <span>체감</span>
-            {weatherData?.daily &&
-              Math.round(weatherData.daily[0]?.feels_like?.morn ?? 0)}{" "}
-            °C /{" "}
-            {weatherData?.daily &&
-              Math.round(weatherData.daily[0]?.feels_like?.night ?? 0)}{" "}
+            <span>체감온도 </span>
+            {weatherData?.current &&
+              Math.round(weatherData.current?.feels_like ?? 0)}
             °C
           </p>
         </div>

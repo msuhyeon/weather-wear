@@ -10,6 +10,9 @@ const nextConfig = {
     config.resolve.alias["@"] = path.join(__dirname, "./");
     return config;
   },
+  images: {
+    domains: ["openweathermap.org"],
+  },
 };
 
 export default nextConfig;

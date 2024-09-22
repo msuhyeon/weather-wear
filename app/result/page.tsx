@@ -17,8 +17,6 @@ type ResultProps = {
 const Result: React.FC<ResultProps> = ({ searchParams }) => {
   const data = JSON.parse(decodeURIComponent(searchParams.data));
 
-  console.log("data-", data);
-
   return (
     <div>
       <h2>오늘의 추천 의상 (기온: {data.currentTemperature}°C)</h2>

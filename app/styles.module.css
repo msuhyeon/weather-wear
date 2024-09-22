@@ -1,3 +1,8 @@
+.container {
+  padding: 20px;
+  border-radius: 10px;
+}
+
 .weatherInfo {
   background-color: #fff;
   border-radius: 8px;
@@ -28,7 +33,7 @@
   font-weight: bold;
   text-align: center;
   transition: background-color 0.3s ease;
-  width: 330px;
+  width: 100%;
   box-sizing: border-box;
   border: none;
 }
@@ -43,4 +48,47 @@
   flex-direction: column;
   align-items: center;
   padding: 1rem;
+}
+
+.weatherCard {
+  display: flex;
+  gap: 17px;
+  align-items: flex-start;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 130px;
+}
+
+.skeletonWrapper {
+  animation: skeleton-loading 1s linear infinite alternate;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 80%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+
+.loadingText {
+  color: #333;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.weatherCard {
+  display: flex;
+  gap: 17px;
+  align-items: flex-start;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 130px;
 }

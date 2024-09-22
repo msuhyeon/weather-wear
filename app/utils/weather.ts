@@ -28,5 +28,10 @@ export const getWeatherData = async (coordinates: {
   if (!response.ok) {
     throw new Error("Failed to fetch weather data");
   }
+
+  setTimeout(() => {
+    console.log("5초 후 실행됩니다.");
+  }, 5000);
+
   return response.json();
 };

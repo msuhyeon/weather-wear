@@ -44,9 +44,6 @@ export default function RootLayout({
         <div className={styles.container}>
           <header className={styles.header}>
             <h1>WeatherWear</h1>
-            {/* <div onClick={handleHamburgerClick}>
-              <span className="material-icons">menu</span>
-            </div> */}
             <HamburgerMenu />
           </header>
           <main className={styles.content}>{children}</main>

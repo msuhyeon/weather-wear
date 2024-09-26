@@ -3,7 +3,7 @@
 }
 
 .sideNav {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: -250px;
   width: 250px;

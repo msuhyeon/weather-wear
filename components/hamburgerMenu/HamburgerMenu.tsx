@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
 import styles from "./styles.module.css";
 
 export default function HamburgerMenu() {
@@ -13,7 +14,7 @@ export default function HamburgerMenu() {
   return (
     <>
       <div onClick={handleHamburgerClick} className={styles.hamburgerBtn}>
-        <span className="material-icons">menu</span>
+        <MenuIcon className={styles.menuIcon} />
       </div>
       <nav className={`${styles.sideNav} ${isNavOpen ? styles.open : ""}`}>
         Side Nav Here!

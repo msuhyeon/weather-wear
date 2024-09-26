@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Head from "next/head";
 import styles from "./layout.module.css";
+import HamburgerMenu from "@/components/hamburgerMenu/HamburgerMenu";
 
 export const metadata: Metadata = {
   title: "WeatherWear",
@@ -32,10 +34,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"
+        />
+      </Head>
       <body>
         <div className={styles.container}>
           <header className={styles.header}>
             <h1>WeatherWear</h1>
+            {/* <div onClick={handleHamburgerClick}>
+              <span className="material-icons">menu</span>
+            </div> */}
+            <HamburgerMenu />
           </header>
           <main className={styles.content}>{children}</main>
         </div>

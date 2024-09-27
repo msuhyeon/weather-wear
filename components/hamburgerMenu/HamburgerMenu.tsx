@@ -17,7 +17,17 @@ export default function HamburgerMenu() {
         <MenuIcon className={styles.menuIcon} />
       </div>
       <nav className={`${styles.sideNav} ${isNavOpen ? styles.open : ""}`}>
-        Side Nav Here!
+        <div>search button</div>
+        <ul>
+          <li>
+            추가된 지역
+            <span>location</span>
+            <span>
+              <i>icon</i> temperature
+            </span>
+          </li>
+          <li>추가된 지역</li>
+        </ul>
       </nav>
     </>
   );

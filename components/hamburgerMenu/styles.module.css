@@ -19,4 +19,12 @@
 
 .sideNav.open {
   left: 0;
+  padding: 35px 40px;
+}
+
+.searchButton {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  border: none;
 }

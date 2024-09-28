@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
 import styles from "./styles.module.css";
 
 export default function HamburgerMenu() {
@@ -17,9 +18,11 @@ export default function HamburgerMenu() {
         <MenuIcon className={styles.menuIcon} />
       </div>
       <nav className={`${styles.sideNav} ${isNavOpen ? styles.open : ""}`}>
-        <div>search button</div>
-        <ul>
-          <li>
+        <button className={styles.searchButton}>
+          <SearchIcon />
+        </button>
+        <ul className={styles.locationList}>
+          <li className={styles.location}>
             추가된 지역
             <span>location</span>
             <span>

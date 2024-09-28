@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Head from "next/head";
 import styles from "./layout.module.css";
+import "./globals.css";
 import HamburgerMenu from "@/components/hamburgerMenu/HamburgerMenu";
 
 export const metadata: Metadata = {

@@ -12,11 +12,18 @@
 }
 
 .header {
-  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: end;
+  padding: 1.5rem 0;
 }
 
 .header h1 {
   text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+  flex: 2;
 }
 
 .headerContent {

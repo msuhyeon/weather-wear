@@ -44,8 +44,8 @@ export default function RootLayout({
       <body>
         <div className={styles.container}>
           <header className={styles.header}>
-            <h1>WeatherWear</h1>
             <HamburgerMenu />
+            <h1>WeatherWear</h1>
           </header>
           <main className={styles.content}>{children}</main>
         </div>

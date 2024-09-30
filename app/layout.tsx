@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Head from "next/head";
 import styles from "./layout.module.css";
 import "./globals.css";
@@ -45,7 +46,9 @@ export default function RootLayout({
         <div className={styles.container}>
           <header className={styles.header}>
             <HamburgerMenu />
-            <h1>WeatherWear</h1>
+            <Link className={styles.headerLogo} href="/">
+              <h1>WeatherWear</h1>
+            </Link>
           </header>
           <main className={styles.content}>{children}</main>
         </div>

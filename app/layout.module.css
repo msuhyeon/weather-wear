@@ -15,15 +15,18 @@
   display: flex;
   justify-content: center;
   flex-direction: row;
-  align-items: end;
+  align-items: flex-end;
   padding: 1.5rem 0;
+}
+
+.header .headerLogo {
+  flex: 2;
 }
 
 .header h1 {
   text-align: center;
   font-size: 30px;
   font-weight: 600;
-  flex: 2;
 }
 
 .headerContent {

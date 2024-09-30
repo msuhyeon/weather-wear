@@ -28,7 +28,6 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ initialWeatherData }) => {
   const weatherData = initialWeatherData;
 
   return (
-    // <div className={styles.container}>
     <>
       <div className={styles.weatherCard}>
         <Image
@@ -58,7 +57,6 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ initialWeatherData }) => {
         </div>
       </div>
     </>
-    // </div>
   );
 };
 

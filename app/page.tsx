@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import Link from "next/link";
 import styles from "./styles.module.css";
 import WeatherInfo from "@/components/weatherInfo/WeatherInfo";
-import { getWeatherData } from "@/app/utils/weather";
 
 interface Coordinates {
   lat: number;
@@ -25,21 +24,6 @@ interface WeatherData {
   current: CurrentData | null;
 }
 
-async function WeatherData() {
-  // default: 서울 중구
-  const coordinates: Coordinates = {
-    lat: 37.5665,
-    lon: 126.978,
-  };
-
-  try {
-    const weatherData = await getWeatherData(coordinates);
-    return <WeatherInfo initialWeatherData={weatherData} />;
-  } catch (error) {
-    return <div>Error loading weather data</div>;
-  }
-}
-
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -55,7 +39,8 @@ export default function Home() {
             </div>
           }
         >
-          <WeatherData />
+          {/* <WeatherData /> */}
+          <WeatherInfo />
         </Suspense>
         <Link href="/recommendation" className={styles.recommendButton}>
           날씨에 맞는 옷차림 추천 받기 👀

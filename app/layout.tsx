@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Head from "next/head";
+import { Providers } from "./providers";
+import HamburgerMenu from "@/components/hamburgerMenu/HamburgerMenu";
 import styles from "./layout.module.css";
 import "./globals.css";
-import HamburgerMenu from "@/components/hamburgerMenu/HamburgerMenu";
 
 export const metadata: Metadata = {
   title: "WeatherWear",
@@ -43,15 +44,17 @@ export default function RootLayout({
         />
       </Head>
       <body>
-        <div className={styles.container}>
-          <header className={styles.header}>
-            <HamburgerMenu />
-            <Link className={styles.headerLogo} href="/">
-              <h1>WeatherWear</h1>
-            </Link>
-          </header>
-          <main className={styles.content}>{children}</main>
-        </div>
+        <Providers>
+          <div className={styles.container}>
+            <header className={styles.header}>
+              <HamburgerMenu />
+              <Link className={styles.headerLogo} href="/">
+                <h1>WeatherWear</h1>
+              </Link>
+            </header>
+            <main className={styles.content}>{children}</main>
+          </div>
+        </Providers>
       </body>
     </html>
   );

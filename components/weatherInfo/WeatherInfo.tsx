@@ -5,6 +5,7 @@ import { fetchWeatherData } from "@/app/api/weather";
 import Image from "next/image";
 import styles from "./styles.module.css";
 import { useQuery } from "@tanstack/react-query";
+import { ErrorBoundary } from "react-error-boundary";
 
 interface WeatherCondition {
   icon: string;
@@ -22,14 +23,54 @@ interface WeatherData {
   current: CurrentData | null;
 }
 
+const WeatherDisplay = ({
+  coordinates,
+}: {
+  coordinates: { lat: number; lon: number };
+}) => {
+  const { data: weatherData } = useQuery<WeatherData>({
+    queryKey: ["weather", coordinates],
+    queryFn: () => fetchWeatherData(coordinates),
+    suspense: true,
+    enabled: coordinates.lat !== 0 && coordinates.lon !== 0,
+  });
+
+  if (!weatherData || !weatherData.current) {
+    return <div>날씨 정보를 찾을 수 없습니다.</div>;
+  }
+
+  return (
+    <div className={styles.weatherCard}>
+      <Image
+        src={`https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`}
+        alt="weather icon"
+        width={130}
+        height={130}
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
+        placeholder="blur"
+        unoptimized
+      />
+      <div className={styles.weatherInfoWrap}>
+        <h2 className={styles.title}>현재 날씨</h2>
+        <p className={styles.currentTemp}>
+          {Math.round(weatherData.current.temp)} °C
+        </p>
+        <p className={styles.info}>
+          {weatherData.current.weather[0].description}
+        </p>
+        <p className={styles.info}>
+          <span>체감온도 </span>
+          {Math.round(weatherData.current.feels_like)} °C
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const WeatherInfo: React.FC = () => {
-  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [coordinates, setCoordinates] = useState({ lat: 0, lon: 0 });
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 1. geolocation API를 호출하여 현재 위치 조회
     const getGeolocation = () => {
       navigator.geolocation.getCurrentPosition(
         ({ coords }) => {
@@ -45,50 +86,10 @@ const WeatherInfo: React.FC = () => {
     getGeolocation();
   }, []);
 
-  useEffect(() => {
-    // 2. 가져온 현재 위치를 바탕으로 날씨 조회 API 호출
-    const fetchData = async (coordinates: { lat: number; lon: number }) => {
-      try {
-        const {
-          data: weatherData,
-          isLoading,
-          error,
-        } = useQuery({
-          queryKey: ["weather", coordinates],
-          queryFn: () => fetchWeatherData(coordinates),
-        });
-
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (coordinates.lat !== 0 && coordinates.lon !== 0) {
-      fetchData(coordinates);
-    }
-  }, [coordinates]);
-
-  if (!weatherData || !weatherData.current) {
-    return;
-  }
-
-  const { data: weatherData, isLoading } = useQuery<WeatherData>({
-    queryKey: ["weather", coordinates],
-    queryFn: () => fetchWeatherData(coordinates),
-  });
-
-  if (isLoading) {
-    return <div>날씨 정보를 불러오는 중...</div>;
-  }
-
-  if (!weatherData || !weatherData.current) {
-    return <div>날씨 정보가 없습니다.</div>;
-  }
-
   return (
-    <>
+    <ErrorBoundary
+      fallback={<div>에러가 발생했습니다. 다시 시도해 주세요.</div>}
+    >
       <Suspense
         fallback={
           <div className={`${styles.weatherCard} ${styles.skeletonWrapper}`}>
@@ -100,35 +101,9 @@ const WeatherInfo: React.FC = () => {
           </div>
         }
       >
-        {/* <div className={styles.weatherCard}>
-          <Image
-            src={`https://openweathermap.org/img/wn/${weatherData.current?.weather[0].icon}@2x.png`}
-            alt="weather icon"
-            width={130}
-            height={130}
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
-            placeholder="blur"
-            unoptimized
-          />
-          <div className={styles.weatherInfoWrap}>
-            <h2 className={styles.title}>현재 날씨</h2>
-            <p className={styles.currentTemp}>
-              {weatherData.current && Math.round(weatherData.current.temp ?? 0)}{" "}
-              °C
-            </p>
-            <p className={styles.info}>
-              {weatherData.current?.weather[0].description}
-            </p>
-            <p className={styles.info}>
-              <span>체감온도 </span>
-              {weatherData.current &&
-                Math.round(weatherData.current.feels_like ?? 0)}
-              °C
-            </p>
-          </div>
-        </div> */}
+        <WeatherDisplay coordinates={coordinates} />
       </Suspense>
-    </>
+    </ErrorBoundary>
   );
 };
 

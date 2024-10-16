@@ -31,7 +31,5 @@ export const fetchWeatherData = async (coordinates: Coordinates) => {
     throw new Error("Failed to fetch weather data");
   }
 
-  console.log(response);
-
   return response.json();
 };

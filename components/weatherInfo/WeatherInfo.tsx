@@ -9,21 +9,11 @@ import { ErrorBoundary } from "react-error-boundary";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-interface WeatherCondition {
-  icon: string;
-  description: string;
-}
-
-interface CurrentData {
-  temp: number;
-  humidity: number;
-  weather: WeatherCondition[];
-  feels_like: number;
-}
-
-interface WeatherData {
-  current: CurrentData | null;
-}
+import {
+  WeatherCondition,
+  CurrentData,
+  WeatherData,
+} from "@/app/types/weather";
 
 const WeatherDisplay = ({
   coordinates,
@@ -40,6 +30,8 @@ const WeatherDisplay = ({
     enabled: coordinates.lat !== 0 && coordinates.lon !== 0,
     retry: 2,
   });
+
+  console.log("weatherData?", weatherData);
 
   if (!weatherData || !weatherData.current) {
     return (

@@ -1,15 +1,15 @@
-interface WeatherCondition {
+export interface WeatherCondition {
   icon: string;
   description: string;
 }
 
-interface CurrentData {
+export interface CurrentData {
   temp: number;
   humidity: number;
   weather: WeatherCondition[];
   feels_like: number;
 }
 
-interface WeatherData {
+export interface WeatherData {
   current: CurrentData | null;
 }

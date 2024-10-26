@@ -7,18 +7,26 @@ import {
   getClothingRecommendation,
   adjustTemperature,
 } from "../../lib/recommendation";
+import { useWeatherData } from "../providers/WeatherDataProvider";
 
 type Gender = "male" | "female" | "";
 type ColdSensitivity = "high" | "medium" | "low" | "";
 
 const Recommendation: React.FC = () => {
+  const router = useRouter();
   const [gender, setGender] = useState<Gender>("");
   const [coldSensitivity, setColdSensitivity] = useState<ColdSensitivity>("");
   // const [loading, setLoading] = useState<boolean>(false);
-  const router = useRouter();
+  const { weatherData } = useWeatherData();
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!weatherData?.current?.temp) {
+      alert("날씨 정보를 불러오는 중입니다. 잠시만 기다려주세요.");
+      return;
+    }
 
     if (gender === "" || coldSensitivity === "") {
       alert("성별 혹은 추위 민감도를 선택해주세요");
@@ -26,7 +34,7 @@ const Recommendation: React.FC = () => {
     }
 
     try {
-      const currentTemperature = 20;
+      const currentTemperature = Math.round(weatherData.current.temp);
       const adjustedTemperature = adjustTemperature(
         currentTemperature,
         coldSensitivity as "high" | "medium" | "low"
@@ -35,6 +43,7 @@ const Recommendation: React.FC = () => {
       const clothingRecommendation = await getClothingRecommendation(
         adjustedTemperature
       );
+
       const recommendationData = {
         ...clothingRecommendation,
         gender,

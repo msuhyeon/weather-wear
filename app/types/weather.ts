@@ -12,4 +12,6 @@ export interface CurrentData {
 
 export interface WeatherData {
   current: CurrentData | null;
+  error: Object | null;
+  isError: boolean;
 }

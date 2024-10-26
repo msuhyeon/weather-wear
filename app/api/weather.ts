@@ -24,7 +24,7 @@ export const getCoordinates = async (city: string) => {
 export const fetchWeatherData = async (coordinates: Coordinates) => {
   const { lat, lon } = coordinates;
 
-  await new Promise((resolve) => setTimeout(resolve, 1700));
+  // await new Promise((resolve) => setTimeout(resolve, 1700));
 
   const response = await fetch(
     `${WEATHER_BASE_URL}?lat=${lat}&lon=${lon}&lang=kr&exclude=minutely,alerts&units=metric&appid=${API_KEY}`

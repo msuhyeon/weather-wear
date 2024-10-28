@@ -15,3 +15,11 @@ export interface WeatherData {
   error: Object | null;
   isError: boolean;
 }
+
+export interface RecommendationData {
+  gender: string;
+  currentTemperature: number;
+  min_temp: number;
+  max_temp: number;
+  clothing: string[];
+}

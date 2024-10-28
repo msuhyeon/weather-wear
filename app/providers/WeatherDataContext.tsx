@@ -8,7 +8,6 @@ import { useState, useEffect } from "react";
 
 type WeatherContextType = {
   weatherData: WeatherData | undefined;
-  // coordinates: { lat: number; lon: number };
   error: object | null;
   isError: boolean;
 };
@@ -21,6 +20,7 @@ export function WeatherDataProvider({
   children: React.ReactNode;
 }) {
   const [coordinates, setCoordinates] = useState({ lat: 0, lon: 0 });
+  const [recommendationData, setRecommendationData] = useState(null);
 
   useEffect(() => {
     const getGeolocation = () => {
@@ -64,8 +64,6 @@ export function WeatherDataProvider({
 
 export const useWeatherData = () => {
   const context = useContext(WeatherContext);
-
-  console.log("context- ", context);
 
   if (!context) throw new Error("Error in context!");
 

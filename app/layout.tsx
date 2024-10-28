@@ -5,7 +5,7 @@ import { QueryProvider } from "./providers/provider";
 import HamburgerMenu from "@/components/hamburgerMenu/HamburgerMenu";
 import styles from "./layout.module.css";
 import "./globals.css";
-import { WeatherDataProvider } from "./providers/WeatherDataProvider";
+import { WeatherDataProvider } from "./providers/WeatherDataContext";
 
 export const metadata: Metadata = {
   title: "WeatherWear",

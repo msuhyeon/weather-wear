@@ -7,7 +7,8 @@ import {
   getClothingRecommendation,
   adjustTemperature,
 } from "../../lib/recommendation";
-import { useWeatherData } from "../providers/WeatherDataProvider";
+import { useWeatherData } from "../providers/WeatherDataContext";
+import { useRecommendationData } from "../providers/RecommendationContext";
 
 type Gender = "male" | "female" | "";
 type ColdSensitivity = "high" | "medium" | "low" | "";
@@ -50,9 +51,13 @@ const Recommendation: React.FC = () => {
         currentTemperature,
       };
 
-      router.push(
-        `/result?data=${encodeURIComponent(JSON.stringify(recommendationData))}`
-      );
+      const { setRecommendationData } = useRecommendationData();
+      setRecommendationData(recommendationData);
+
+      router.push("/result");
+      // router.push(
+      //   `/result?data=${encodeURIComponent(JSON.stringify(recommendationData))}`
+      // );
     } catch (error) {
       console.error("Error fetching recommendation:", error);
       alert("추천을 가져오는 데 문제가 발생했습니다. 다시 시도해주세요.");

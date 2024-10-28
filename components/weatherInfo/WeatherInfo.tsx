@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 import { ErrorBoundary } from "react-error-boundary";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { useWeatherData } from "@/app/providers/WeatherDataProvider";
+import { useWeatherData } from "@/app/providers/WeatherDataContext";
 import { useQueryClient } from "@tanstack/react-query";
 
 const WeatherDisplay = () => {

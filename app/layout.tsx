@@ -6,6 +6,7 @@ import HamburgerMenu from "@/components/hamburgerMenu/HamburgerMenu";
 import styles from "./layout.module.css";
 import "./globals.css";
 import { WeatherDataProvider } from "./providers/WeatherDataContext";
+import { RecommendationDataProvider } from "./providers/RecommendationDataContext";
 
 export const metadata: Metadata = {
   title: "WeatherWear",
@@ -47,15 +48,17 @@ export default function RootLayout({
       <body>
         <QueryProvider>
           <WeatherDataProvider>
-            <div className={styles.container}>
-              <header className={styles.header}>
-                <HamburgerMenu />
-                <Link className={styles.headerLogo} href="/">
-                  <h1>WeatherWear</h1>
-                </Link>
-              </header>
-              <main className={styles.content}>{children}</main>
-            </div>
+            <RecommendationDataProvider>
+              <div className={styles.container}>
+                <header className={styles.header}>
+                  <HamburgerMenu />
+                  <Link className={styles.headerLogo} href="/">
+                    <h1>WeatherWear</h1>
+                  </Link>
+                </header>
+                <main className={styles.content}>{children}</main>
+              </div>
+            </RecommendationDataProvider>
           </WeatherDataProvider>
         </QueryProvider>
       </body>

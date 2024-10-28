@@ -8,7 +8,7 @@ import {
   adjustTemperature,
 } from "../../lib/recommendation";
 import { useWeatherData } from "../providers/WeatherDataContext";
-import { useRecommendationData } from "../providers/RecommendationContext";
+import { useRecommendationData } from "../providers/RecommendationDataContext";
 
 type Gender = "male" | "female" | "";
 type ColdSensitivity = "high" | "medium" | "low" | "";
@@ -17,9 +17,8 @@ const Recommendation: React.FC = () => {
   const router = useRouter();
   const [gender, setGender] = useState<Gender>("");
   const [coldSensitivity, setColdSensitivity] = useState<ColdSensitivity>("");
-  // const [loading, setLoading] = useState<boolean>(false);
   const { weatherData } = useWeatherData();
-
+  const { setRecommendationData } = useRecommendationData();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,7 +50,6 @@ const Recommendation: React.FC = () => {
         currentTemperature,
       };
 
-      const { setRecommendationData } = useRecommendationData();
       setRecommendationData(recommendationData);
 
       router.push("/result");

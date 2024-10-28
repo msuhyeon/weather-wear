@@ -13,7 +13,7 @@ const RecommendationContext = createContext<
   RecommendationContextType | undefined
 >(undefined);
 
-export function RecommendationProvider({
+export function RecommendationDataProvider({
   children,
 }: {
   children: React.ReactNode;

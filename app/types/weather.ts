@@ -16,10 +16,12 @@ export interface WeatherData {
   isError: boolean;
 }
 
+type Gender = "male" | "female";
+
 export interface RecommendationData {
-  gender: string;
+  gender: Gender;
   currentTemperature: number;
   min_temp: number;
   max_temp: number;
-  clothing: string[];
+  clothing: Record<Gender, string[]>;
 }

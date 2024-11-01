@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./styles.module.css";
-import { ErrorBoundary } from "react-error-boundary";
+import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useWeatherData } from "@/app/providers/WeatherDataContext";
@@ -82,14 +82,14 @@ const WeatherInfo: React.FC = () => {
   );
 };
 
-const ErrorFallback = ({ error, resetErrorBoundary }) => {
+const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   const [isRetrying, setIsRetrying] = useState(false);
 
   const handleRetry = async () => {
     // 별도의 async 함수로 분리
     setIsRetrying(true);
     try {
-      await resetErrorBoundary();
+      resetErrorBoundary();
     } finally {
       setIsRetrying(false);
     }
@@ -99,7 +99,9 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
     <div className={styles.errorContainer}>
       <p>날씨 정보를 가져오는데 실패했습니다.</p>
       <p>{error.message}</p>
-      <button onClick={handleRetry}>다시 시도</button>
+      <button onClick={handleRetry} disabled={isRetrying}>
+        {isRetrying ? "재시도 중..." : "다시 시도"}
+      </button>
     </div>
   );
 };

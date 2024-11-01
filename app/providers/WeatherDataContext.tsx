@@ -20,7 +20,6 @@ export function WeatherDataProvider({
   children: React.ReactNode;
 }) {
   const [coordinates, setCoordinates] = useState({ lat: 0, lon: 0 });
-  const [recommendationData, setRecommendationData] = useState(null);
 
   useEffect(() => {
     const getGeolocation = () => {

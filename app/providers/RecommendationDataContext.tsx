@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-import { RecommendationData } from "../types/weather";
+import { RecommendationData } from "@/app/types/weather";
 
 type RecommendationContextType = {
   recommendationData: RecommendationData | null;

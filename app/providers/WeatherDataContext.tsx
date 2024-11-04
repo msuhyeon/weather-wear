@@ -2,7 +2,7 @@
 
 import { createContext, useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { WeatherData } from "@/app/types/weather";
+import { WeatherData } from "../../types/weather";
 import { fetchWeatherData } from "@/app/api/weather";
 import { useState, useEffect } from "react";
 

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import CompassIcon from "@/app/utils/CompassIcon";
 import styles from "./styles.module.css";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 import Skeleton from "react-loading-skeleton";
@@ -50,7 +51,11 @@ const WeatherDisplay = () => {
         unoptimized
       />
       <div className={styles.weatherInfoWrap}>
-        <h2 className={styles.title}>현재 날씨</h2>
+        {/* <h2 className={styles.title}>현재 날씨</h2> */}
+        <div className={styles.titleWrap}>
+          <h2 className={styles.title}>현재 위치명</h2>
+          <CompassIcon />
+        </div>
         <p className={styles.currentTemp}>
           {Math.round(weatherData.current.temp)} °C
         </p>

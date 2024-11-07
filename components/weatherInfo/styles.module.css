@@ -62,10 +62,16 @@
   flex-grow: 1;
 }
 
+.titleWrap {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 .title {
   font-size: 20px;
   margin-top: 0;
-  margin-bottom: 10px;
 }
 
 .currentTemp {

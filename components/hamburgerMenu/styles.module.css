@@ -15,11 +15,27 @@
   height: 100%;
   background-color: #f1f1f1;
   transition: left 0.3s ease;
-  padding: 35px 40px;
+  padding: 10px 20px;
 }
 
 .sideNav.open {
   left: 0;
+}
+
+.navHeader {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.closeBtn {
+  border: none;
+  display: inline-block;
+  background: none;
+}
+
+.closeIcon {
+  font-size: 30px;
 }
 
 .innerForm {
@@ -27,6 +43,7 @@
   padding: 11px 13px;
   border: 1px solid #000;
   background: #fff;
+  border-radius: 7px;
 }
 
 .inputForm {
@@ -44,6 +61,7 @@
   display: flex;
   justify-content: flex-end;
   border: none;
+  background: #fff;
 }
 
 .locationList {

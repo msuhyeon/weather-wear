@@ -23,11 +23,10 @@
 }
 
 .recommendButton {
-  display: inline-block;
-  background-color: #007bff;
+  display: block;
   background-color: #f05050;
   color: white;
-  padding: 0.8rem 1.5rem;
+  padding: 0 1.5rem;
   border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
@@ -37,11 +36,9 @@
   box-sizing: border-box;
   border: none;
   margin-top: 20px;
-}
-
-.recommendButton:hover {
-  background-color: #0056b3;
-  background-color: #ca4141;
+  font-size: 0.9rem;
+  height: 42px;
+  line-height: 42px;
 }
 
 .content {

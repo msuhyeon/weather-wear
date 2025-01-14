@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import CancelIcon from "@mui/icons-material/Cancel";
+import CloseIcon from "@mui/icons-material/Close";
 import styles from "./styles.module.css";
 
 export default function HamburgerMenu() {
@@ -44,6 +45,10 @@ export default function HamburgerMenu() {
     setCityInput("");
   };
 
+  const handleClose = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
   return (
     <>
       <div onClick={handleHamburgerClick} className={styles.hamburgerBtn}>
@@ -53,29 +58,35 @@ export default function HamburgerMenu() {
         ref={navRef}
         className={`${styles.sideNav} ${isNavOpen ? styles.open : ""}`}
       >
+        <div className={styles.navHeader}>
+          <button className={styles.closeBtn} onClick={handleClose}>
+            <CloseIcon className={styles.closeIcon} />
+          </button>
+        </div>
         <fieldset className={styles.innerForm}>
           <input
             type="text"
             className={styles.inputForm}
-            placeholder="어느 도시의 날씨가 궁금한가요?"
+            placeholder="어느 도시의 날씨가 궁금하세요?"
             title="도시 이름 검색  "
+            value={cityInput}
             onChange={handleChange}
           />
-          <button className={styles.resetButton} onClick={handleReset}>
-            <CancelIcon />
-          </button>
+          {cityInput.length > 0 && (
+            <button className={styles.resetButton} onClick={handleReset}>
+              <CancelIcon />
+            </button>
+          )}
           <button className={styles.searchButton} onClick={handleSearch}>
             <SearchIcon />
           </button>
         </fieldset>
         <ul className={styles.locationList}>
           <li className={styles.location}>
-            <span>location</span>
-            <span>
-              <i>icon</i> temperature
-            </span>
+            {/* <span>location</span> */}
+            <span>{/* <i>icon</i> temperature */}</span>
           </li>
-          <li>추가된 지역</li>
+          {/* <li>추가된 지역</li> */}
         </ul>
       </nav>
     </>

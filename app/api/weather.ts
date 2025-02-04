@@ -29,7 +29,7 @@ export const fetchWeatherData = async (coordinates: Coordinates) => {
   );
 
   if (!response.ok) {
-    throw new Error("Failed to fetch weather data");
+    throw new Error("날씨를 불러오는데 실패했어요 😭");
   }
 
   return response.json();

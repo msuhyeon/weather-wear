@@ -7,11 +7,11 @@ import styles from "./styles.module.css";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { useWeatherData } from "@/app/providers/WeatherDataContext";
+// import { useWeatherData } from "@/app/providers/WeatherDataContext";
 import { useQueryClient } from "@tanstack/react-query";
 
 const WeatherDisplay = () => {
-  const { weatherData, error, isError } = useWeatherData();
+  // const { weatherData, error, isError } = useWeatherData();
 
   if (isError) {
     throw error;
@@ -102,10 +102,14 @@ const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
 
   return (
     <div className={styles.errorContainer}>
-      <p>날씨 정보를 가져오는데 실패했습니다.</p>
-      <p>{error.message}</p>
-      <button onClick={handleRetry} disabled={isRetrying}>
-        {isRetrying ? "재시도 중..." : "다시 시도"}
+      {/* <p className={styles.errorText}>날씨 정보를 가져오는데 실패했습니다.</p> */}
+      <p className={styles.errorMessage}>{error.message}</p>
+      <button
+        onClick={handleRetry}
+        disabled={isRetrying}
+        className={styles.retryButton}
+      >
+        {isRetrying ? "재시도 중..." : "날씨 정보 다시 가져오기"}
       </button>
     </div>
   );

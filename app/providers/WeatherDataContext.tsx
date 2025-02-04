@@ -4,6 +4,7 @@ import { createContext, useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { WeatherData } from "../../types/weather";
 import { fetchWeatherData } from "@/app/api/weather";
+import { fetchAddressData } from "@/app/api/geolocation";
 import { useState, useEffect } from "react";
 
 type WeatherContextType = {

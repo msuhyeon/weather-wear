@@ -1,11 +1,15 @@
 "use client";
 
 import React from "react";
+import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-import { useRecommendationData } from "../providers/RecommendationDataContext";
+import { getRecommendation } from "../api/recommendation";
 
 const Result = () => {
-  const { recommendationData } = useRecommendationData();
+  const [recommendation, setRecommendation] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {}, []);
 
   return (
     <div className={styles.container}>

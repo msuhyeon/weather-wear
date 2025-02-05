@@ -7,8 +7,10 @@ import {
   getClothingRecommendation,
   adjustTemperature,
 } from "../../lib/recommendation";
-import { useWeatherData } from "../providers/WeatherDataContext";
-import { useRecommendationData } from "../providers/RecommendationDataContext";
+import { useWeather } from "@/app/hook/useWeather";
+
+// import { useWeatherData } from "../providers/WeatherDataContext";
+// import { useRecommendationData } from "../providers/RecommendationDataContext";
 
 type Gender = "male" | "female" | "";
 type ColdSensitivity = "high" | "medium" | "low" | "";
@@ -17,51 +19,17 @@ const Recommendation: React.FC = () => {
   const router = useRouter();
   const [gender, setGender] = useState<Gender>("");
   const [coldSensitivity, setColdSensitivity] = useState<ColdSensitivity>("");
-  const { weatherData } = useWeatherData();
-  const { setRecommendationData } = useRecommendationData();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!weatherData?.current?.temp) {
-      alert("날씨 정보를 불러오는 중입니다. 잠시만 기다려주세요.");
-      return;
-    }
 
     if (gender === "" || coldSensitivity === "") {
       alert("성별 혹은 추위 민감도를 선택해주세요");
       return;
     }
 
-    try {
-      const currentTemperature = Math.round(weatherData.current.temp);
-      const adjustedTemperature = adjustTemperature(
-        currentTemperature,
-        coldSensitivity as "high" | "medium" | "low"
-      );
 
-      const clothingRecommendation = await getClothingRecommendation(
-        adjustedTemperature
-      );
-
-      const recommendationData = {
-        ...clothingRecommendation,
-        gender,
-        currentTemperature,
-      };
-
-      setRecommendationData(recommendationData);
-
-      router.push("/result");
-      // router.push(
-      //   `/result?data=${encodeURIComponent(JSON.stringify(recommendationData))}`
-      // );
-    } catch (error) {
-      console.error("Error fetching recommendation:", error);
-      alert("추천을 가져오는 데 문제가 발생했습니다. 다시 시도해주세요.");
-    } finally {
-      // setLoading(false);
-    }
+    router.push("/result");
   };
 
   return (

@@ -1,8 +1,6 @@
 import { supabase } from "./supabase";
 
 export async function getClothingRecommendation(temperature: number) {
-  console.log("temperature?", temperature);
-
   const { data, error } = await supabase
     .from("clothing_by_temperature")
     .select("min_temp, max_temp, clothing")

@@ -52,8 +52,6 @@ export default function HamburgerMenu() {
 
   return (
     <>
-      {/* 최근 검색한 지역 리스트 */}
-      <RecentSearches />
       <div onClick={handleHamburgerClick} className={styles.hamburgerBtn}>
         <MenuIcon className={styles.menuIcon} />
       </div>
@@ -66,7 +64,7 @@ export default function HamburgerMenu() {
             <CloseIcon className={styles.closeIcon} />
           </button>
         </div>
-        <fieldset className={styles.innerForm}>
+        {/* <fieldset className={styles.innerForm}>
           <input
             type="text"
             className={styles.inputForm}
@@ -83,7 +81,10 @@ export default function HamburgerMenu() {
           <button className={styles.searchButton} onClick={handleSearch}>
             <SearchIcon />
           </button>
-        </fieldset>
+        </fieldset> */}
+
+        {/* 최근 검색한 지역 리스트 */}
+        <RecentSearches />
         <ul className={styles.locationList}>
           <li className={styles.location}>
             {/* <span>location</span> */}

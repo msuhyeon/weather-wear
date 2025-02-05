@@ -1,11 +1,10 @@
+import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { QueryProvider } from "./providers/provider";
+import ClientProviders from "@/components/ClientProvider";
 import HamburgerMenu from "@/components/hamburgerMenu/HamburgerMenu";
 import styles from "./layout.module.css";
 import "./globals.css";
-import { WeatherDataProvider } from "./providers/WeatherDataContext";
-import { RecommendationDataProvider } from "./providers/RecommendationDataContext";
 
 export const metadata: Metadata = {
   title: "WeatherWear",
@@ -42,21 +41,19 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <QueryProvider>
-          <WeatherDataProvider>
-            <RecommendationDataProvider>
-              <div className={styles.container}>
-                <header className={styles.header}>
-                  <HamburgerMenu />
-                  <Link className={styles.headerLogo} href="/">
-                    <h1>WeatherWear</h1>
-                  </Link>
-                </header>
-                <main className={styles.content}>{children}</main>
-              </div>
-            </RecommendationDataProvider>
-          </WeatherDataProvider>
-        </QueryProvider>
+        <React.StrictMode>
+          <ClientProviders>
+            <div className={styles.container}>
+              <header className={styles.header}>
+                <HamburgerMenu />
+                <Link className={styles.headerLogo} href="/">
+                  <h1>WeatherWear</h1>
+                </Link>
+              </header>
+              <main className={styles.content}>{children}</main>
+            </div>
+          </ClientProviders>
+        </React.StrictMode>
       </body>
     </html>
   );

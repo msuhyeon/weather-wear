@@ -4,50 +4,46 @@ import React, { useState } from "react";
 import Image from "next/image";
 import CompassIcon from "@/app/utils/CompassIcon";
 import styles from "./styles.module.css";
-import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { useQueryClient } from "@tanstack/react-query";
 import { useWeather } from "@/app/hook/useWeather";
+import { useGeolocation } from "@/app/hook/useGeolocation";
 
 const WeatherInfo = () => {
-  // const { weatherData, error, isError } = useWeatherData();
+  useGeolocation();
 
-  const data = useWeather();
+  const { data, error, isError } = useWeather();
 
-  console.log("data-", data);
+  if (isError) {
+    throw error;
+  }
 
-  // if (isError) {
-  //   throw error;
-  // }
-
-  // if (!weatherData || !weatherData.current) {
-  //   return (
-  //     <div className={styles.weatherCard}>
-  //       <Skeleton height={130} width={130} />
-  //       <div className={styles.weatherInfoWrap}>
-  //         <h2 className={styles.title}>
-  //           <Skeleton height={20} />
-  //         </h2>
-  //         <p className={styles.currentTemp}>
-  //           <Skeleton height={30} />
-  //         </p>
-  //         <p className={styles.info}>
-  //           <Skeleton height={16} />
-  //         </p>
-  //         <p className={styles.info}>
-  //           <Skeleton height={16} />
-  //         </p>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  if (!data || !data.current) {
+    return (
+      <div className={styles.weatherCard}>
+        <Skeleton height={130} width={130} />
+        <div className={styles.weatherInfoWrap}>
+          <h2 className={styles.title}>
+            <Skeleton height={20} />
+          </h2>
+          <p className={styles.currentTemp}>
+            <Skeleton height={30} />
+          </p>
+          <p className={styles.info}>
+            <Skeleton height={16} />
+          </p>
+          <p className={styles.info}>
+            <Skeleton height={16} />
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.weatherCard}>
       <Image
-        src=""
-        // src={`https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`}
+        src={`https://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`}
         alt="weather icon"
         width={130}
         height={130}
@@ -61,15 +57,11 @@ const WeatherInfo = () => {
           <h2 className={styles.title}>현재 위치명</h2>
           <CompassIcon />
         </div>
-        <p className={styles.currentTemp}>
-          {/* {Math.round(weatherData.current.temp)} °C */}
-        </p>
-        <p className={styles.info}>
-          {/* {weatherData.current.weather[0].description} */}
-        </p>
+        <p className={styles.currentTemp}>{Math.round(data.current.temp)} °C</p>
+        <p className={styles.info}>{data.current.weather[0].description}</p>
         <p className={styles.info}>
           <span>체감온도 </span>
-          {/* {Math.round(weatherData.current.feels_like)} °C */}
+          {Math.round(data.current.feels_like)} °C
         </p>
       </div>
     </div>

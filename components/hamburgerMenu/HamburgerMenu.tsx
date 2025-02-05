@@ -6,6 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CloseIcon from "@mui/icons-material/Close";
 import styles from "./styles.module.css";
+import RecentSearches from "./RecentSearches";
 
 export default function HamburgerMenu() {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -51,6 +52,8 @@ export default function HamburgerMenu() {
 
   return (
     <>
+      {/* 최근 검색한 지역 리스트 */}
+      <RecentSearches />
       <div onClick={handleHamburgerClick} className={styles.hamburgerBtn}>
         <MenuIcon className={styles.menuIcon} />
       </div>

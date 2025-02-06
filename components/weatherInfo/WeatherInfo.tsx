@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import CompassIcon from "@/app/utils/CompassIcon";
 import styles from "./styles.module.css";

@@ -3,33 +3,26 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./styles.module.css";
-import {
-  getClothingRecommendation,
-  adjustTemperature,
-} from "../../lib/recommendation";
-import { useWeather } from "@/app/hook/useWeather";
-
-// import { useWeatherData } from "../providers/WeatherDataContext";
-// import { useRecommendationData } from "../providers/RecommendationDataContext";
-
-type Gender = "male" | "female" | "";
-type ColdSensitivity = "high" | "medium" | "low" | "";
+import { Gender, Sensitivity } from "../../types/weather";
 
 const Recommendation: React.FC = () => {
   const router = useRouter();
-  const [gender, setGender] = useState<Gender>("");
-  const [coldSensitivity, setColdSensitivity] = useState<ColdSensitivity>("");
+  const [gender, setGender] = useState<Gender | null>(null);
+  const [coldSensitivity, setColdSensitivity] = useState<Sensitivity | null>(
+    null
+  );
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
-    if (gender === "" || coldSensitivity === "") {
+    if (!gender || !coldSensitivity) {
       alert("성별 혹은 추위 민감도를 선택해주세요");
       return;
     }
 
-
-    router.push("/result");
+    router.push(`/result?gender=${gender}&sensitivity=${coldSensitivity}`);
   };
 
   return (
@@ -59,28 +52,28 @@ const Recommendation: React.FC = () => {
           <button
             type="button"
             className={coldSensitivity === "high" ? styles.selected : ""}
-            onClick={() => setColdSensitivity("high")}
+            onClick={() => setColdSensitivity(Sensitivity.High)}
           >
             추위를 잘 타요
           </button>
           <button
             type="button"
             className={coldSensitivity === "medium" ? styles.selected : ""}
-            onClick={() => setColdSensitivity("medium")}
+            onClick={() => setColdSensitivity(Sensitivity.Medium)}
           >
             보통이에요
           </button>
           <button
             type="button"
             className={coldSensitivity === "low" ? styles.selected : ""}
-            onClick={() => setColdSensitivity("low")}
+            onClick={() => setColdSensitivity(Sensitivity.Low)}
           >
             추위를 덜 타요
           </button>
         </div>
       </div>
-      <button type="submit" className={styles.submitButton}>
-        코디 추천 받기
+      <button type="submit" className={styles.submitButton} disabled={loading}>
+        {loading ? "추천 중" : "코디 추천 받기"}
       </button>
     </form>
   );

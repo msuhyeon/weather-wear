@@ -28,7 +28,7 @@ export interface WeatherData {
   isError: boolean;
 }
 
-type Gender = "male" | "female";
+export type Gender = "male" | "female";
 
 export interface RecommendationData {
   gender: Gender;

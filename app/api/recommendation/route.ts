@@ -1,17 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
-
-interface ClothingRecommendation {
-  min_temp: number;
-  max_temp: number;
-  clothing: string;
-}
-
-export enum Sensitivity {
-  High = "high",
-  Medium = "medium",
-  Low = "low",
-}
+import { Sensitivity } from "@/types/weather";
 
 // 온도 보정
 function adjustTemperature(
@@ -25,25 +14,6 @@ function adjustTemperature(
       return actualTemp + 2;
     default:
       return actualTemp;
-  }
-}
-
-export async function POST(req: NextRequest): Promise<NextResponse> {
-  try {
-    const { gender, sensitivity } = await req.json();
-
-    const { error } = await supabase
-      .from("recommendations")
-      .insert([{ gender, sensitivity }]);
-
-    if (error) throw error;
-
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    return NextResponse.json(
-      { error: (error as Error).message },
-      { status: 500 }
-    );
   }
 }
 
@@ -62,9 +32,9 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     const { data, error } = await supabase
       .from("clothing_by_temperature")
       .select("min_temp, max_temp, clothing")
-      .gte("max_temp", temperature)
-      .lte("min_temp", temperature)
-      .single();
+      .gte("max_temp", adjustedTemp)
+      .lte("min_temp", adjustedTemp)
+      .maybeSingle();
 
     if (error) {
       console.error("추천 데이터 가져오기 실패:", error);

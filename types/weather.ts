@@ -10,6 +10,18 @@ export interface CurrentData {
   feels_like: number;
 }
 
+interface ClothingRecommendation {
+  min_temp: number;
+  max_temp: number;
+  clothing: string;
+}
+
+export enum Sensitivity {
+  High = "high",
+  Medium = "medium",
+  Low = "low",
+}
+
 export interface WeatherData {
   current: CurrentData | null;
   error: Error | null;

@@ -1,27 +1,14 @@
-import { supabase } from "./supabase";
+export async function getRecommendation(
+  temperature: number,
+  sensitivity: string
+) {
+  const response = await fetch(
+    `/api/recommendation?temperature=${temperature}&sensitivity=${sensitivity}`
+  );
 
-export async function getClothingRecommendation(temperature: number) {
-  const { data, error } = await supabase
-    .from("clothing_by_temperature")
-    .select("min_temp, max_temp, clothing")
-    .gte("max_temp", temperature)
-    .lte("min_temp", temperature)
-    .single();
-
-  if (error) throw error;
-  return data;
-}
-
-export function adjustTemperature(
-  actualTemp: number,
-  sensitivity: "high" | "medium" | "low"
-): number {
-  switch (sensitivity) {
-    case "high":
-      return actualTemp - 2;
-    case "low":
-      return actualTemp + 2;
-    default:
-      return actualTemp;
+  if (!response.ok) {
+    throw new Error("추천 데이터를 불러오는 데 실패했습니다.");
   }
+
+  return response.json();
 }

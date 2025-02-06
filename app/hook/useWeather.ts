@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useLocationStore } from "../store/useLocationStore";
-import { fetchWeather } from "../api/weather";
+import { fetchWeather } from "../../lib/weather";
 
 export function useWeather() {
   const { lat, lon } = useLocationStore();

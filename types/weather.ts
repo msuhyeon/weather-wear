@@ -37,3 +37,8 @@ export interface RecommendationData {
   max_temp: number;
   clothing: Record<Gender, string[]>;
 }
+
+export interface Options {
+  id: string;
+  label: string;
+}

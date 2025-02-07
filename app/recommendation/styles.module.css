@@ -2,16 +2,18 @@
   margin: 0 auto;
   padding: 20px;
   width: 330px;
+  width: 100%;
 }
 
 .questionGroup {
   margin-bottom: 30px;
 }
 
-.questionGroup h2 {
-  font-size: 1.2rem;
+.question {
+  font-size: 1.1rem;
   margin-bottom: 15px;
   color: #333;
+  font-weight: 500;
 }
 
 .buttonGroup {
@@ -40,18 +42,67 @@
   background-color: #f05050;
   color: white;
 }
-.submitButton {
-  width: 100%;
-  padding: 15px;
-  border: none;
-  border-radius: 25px;
-  background-color: #f05050;
-  color: white;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+
+.checkboxGroup {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.submitButton:hover {
-  background-color: #ca4141;
+.checkboxItem {
+  width: calc(100% / 2 - 10px);
+  padding: 7px 8px;
+  border-radius: 7px;
+}
+
+.checkboxItem.selected {
+  background: #f7dcdc;
+}
+
+.customCheckbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  gap: 10px;
+  user-select: none;
+}
+
+.customCheckbox input {
+  display: none;
+}
+
+.customCheckbox input:checked + .checkmark {
+  background-color: #f05050;
+  border-color: #f05050;
+}
+
+.customCheckbox input:checked + .checkmark::after {
+  content: "";
+  width: 7px;
+  height: 11px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 3px;
+  transition: all 0.2s ease;
+}
+
+.checkmark {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #ebebeb;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  background-color: white;
+}
+
+.label {
+  line-height: 24px;
 }

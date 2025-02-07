@@ -23,13 +23,16 @@ const Result = () => {
   const fetchRecommendation = async () => {
     try {
       const sensitivity = searchParams.get("sensitivity") as Sensitivity;
+      const stylesParam = searchParams.get("styles");
+      const styles = stylesParam ? stylesParam.split(",") : [];
 
       if (!sensitivity) throw new Error("민감도 값이 없음 오류!");
 
-      const recommendationData = await getRecommendation(
-        Math.round(data.current.temp),
-        sensitivity
-      );
+      // const recommendationData = await getRecommendation(
+      //   Math.round(data.current.temp),
+      //   sensitivity,
+      //   styles
+      // );
       setRecommendation(recommendationData);
     } catch (error) {
       console.error(`추천 데이터를 가져오는 중 오류가 발생했습니다. ${error}`);

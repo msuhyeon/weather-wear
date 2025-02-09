@@ -1,10 +1,12 @@
+"use server";
+
 export async function getAIRecommendation(
   temperature: number,
   gender: string,
   sensitivity: string,
   style: string[]
 ): Promise<string> {
-  const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
+  const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error("API Key가 설정되지 않았습니다.");
 
   const response = await fetch("https://api.openai.com/v1/chat/completions", {

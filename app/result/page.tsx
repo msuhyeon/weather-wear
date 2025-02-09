@@ -2,10 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-import { getRecommendation } from "../../lib/recommendation";
+// import { getRecommendation } from "../../lib/recommendation";
 import { useWeather } from "../hook/useWeather";
 import { useSearchParams } from "next/navigation";
-import { Sensitivity, RecommendationData } from "@/types/weather";
+import { Sensitivity, RecommendationData, Gender } from "@/types/weather";
+import { getAIRecommendation } from "@/lib/ai";
 
 const Result = () => {
   const [recommendation, setRecommendation] =
@@ -22,18 +23,19 @@ const Result = () => {
 
   const fetchRecommendation = async () => {
     try {
+      const gender = searchParams.get("gender") as Gender;
       const sensitivity = searchParams.get("sensitivity") as Sensitivity;
       const stylesParam = searchParams.get("styles");
       const styles = stylesParam ? stylesParam.split(",") : [];
 
       if (!sensitivity) throw new Error("민감도 값이 없음 오류!");
 
-      // const recommendationData = await getRecommendation(
-      //   Math.round(data.current.temp),
-      //   sensitivity,
-      //   styles
-      // );
-      setRecommendation(recommendationData);
+      const res = getAIRecommendation(
+        data?.current?.temp,
+        gender,
+        sensitivity,
+        styles
+      );
     } catch (error) {
       console.error(`추천 데이터를 가져오는 중 오류가 발생했습니다. ${error}`);
     } finally {

@@ -1,8 +1,8 @@
-export async function getAICoordinate(
+export async function getAIRecommendation(
   temperature: number,
   gender: string,
   sensitivity: string,
-  style: string
+  style: string[]
 ): Promise<string> {
   const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
   if (!apiKey) throw new Error("API Key가 설정되지 않았습니다.");

@@ -181,13 +181,16 @@ input:focus {
 }
 
 .splide {
-  padding: 4rem 0;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
 }
 
 .splide__slide:not(.is-active) {
   transform: scale(0.9) !important;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .splide__slide.is-visible {
-  background-color: #fff;
+  transition: ease-in-out 2s;
+  background-color: rgba(255, 255, 255, 1);
 }

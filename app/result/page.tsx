@@ -126,7 +126,7 @@ const Result = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>오늘의 추천 의상</h2>
+      <h2 className={styles.title}>오늘의 추천🧚‍♂️ </h2>
       <div className={styles.recommendation}>
         <div className={styles.weatherInfo}>
           <p className={styles.description}>{coordination?.advice}</p>

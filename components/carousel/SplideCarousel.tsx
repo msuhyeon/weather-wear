@@ -19,6 +19,8 @@ const SplideCarousel = ({ slides }) => {
       {slides.map((item, index) => (
         <SplideSlide className={styles.card} key={index}>
           <span className={styles.category}>{item.category}</span>
+          <div>{item.imageKey}</div>
+          <p className={styles.desc}>{item.description}</p>
         </SplideSlide>
       ))}
     </Splide>

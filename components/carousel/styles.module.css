@@ -1,8 +1,8 @@
 .card {
-  width: 190px !important;
-  height: 250px;
+  width: 210px !important;
+  height: 280px;
   border-radius: 13px;
-  border: 1px dotted #f05050;
+  border: 1px solid #f05050;
   padding: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -10,4 +10,9 @@
 .category {
   font-size: 1.5rem;
   font-weight: 600;
+}
+
+.desc {
+  margin-top: 1rem;
+  line-height: 1.1;
 }

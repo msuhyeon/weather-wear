@@ -1,0 +1,9 @@
+.card {
+  width: 100px !important;
+  height: 180px;
+  background-color: burlywood;
+}
+
+.card .category {
+  font-weight: 600;
+}

@@ -8,16 +8,17 @@ const SplideCarousel = ({ slides }) => {
     <Splide
       options={{
         type: "loop",
-        perPage: 1,
+        perPage: 3,
         autoplay: false,
         interval: 3000,
         transition: "transform 800ms cubic-bezier(.44,.65,.07,1.01)",
         gap: "10px",
+        focus: "center",
       }}
     >
       {slides.map((item, index) => (
-        <SplideSlide className={styles.card}>
-          <div>{item.category}</div>
+        <SplideSlide className={styles.card} key={index}>
+          <span className={styles.category}>{item.category}</span>
         </SplideSlide>
       ))}
     </Splide>

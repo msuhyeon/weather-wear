@@ -4,13 +4,6 @@
   margin-bottom: 20px;
 }
 
-.card {
-  /* background-color: #fff; */
-  border-radius: 10px;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-  padding: 20px;
-}
-
 .weatherInfo {
   display: flex;
   align-items: center;
@@ -29,19 +22,14 @@
   color: #666;
 }
 
-.recommendations {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.tipTitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
 }
 
-.recommendations li {
-  background-color: #ff6f61;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 5px;
-  font-size: 0.9rem;
+.tipContents {
+  font-weight: 500;
+  line-height: 1.5;
+  font-style: italic;
 }

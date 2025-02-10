@@ -127,7 +127,7 @@ const Result = () => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>오늘의 추천 의상</h2>
-      <div className={styles.card}>
+      <div className={styles.recommendation}>
         <div className={styles.weatherInfo}>
           <p className={styles.description}>{coordination?.advice}</p>
           {/* <span className={styles.temperature}>{data?.current?.temp}°C</span> */}
@@ -135,8 +135,7 @@ const Result = () => {
         {coordination && (
           <SplideCarousel slides={coordination.recommendations} />
         )}
-        <p>스타일링 Tip!</p>
-        <p>{coordination.stylingTips}</p>
+        <p className={styles.tipContents}>{coordination.stylingTips}</p>
       </div>
     </div>
   );

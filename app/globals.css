@@ -179,3 +179,15 @@ button {
 input:focus {
   outline: none;
 }
+
+.splide {
+  padding: 4rem 0;
+}
+
+.splide__slide:not(.is-active) {
+  transform: scale(0.9) !important;
+}
+
+.splide__slide.is-visible {
+  background-color: #fff;
+}

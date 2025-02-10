@@ -1,9 +1,13 @@
 .card {
-  width: 100px !important;
-  height: 180px;
-  background-color: burlywood;
+  width: 190px !important;
+  height: 250px;
+  border-radius: 13px;
+  border: 1px dotted #f05050;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.card .category {
+.category {
+  font-size: 1.5rem;
   font-weight: 600;
 }

@@ -14,6 +14,7 @@ const SplideCarousel = ({ slides }) => {
         transition: "transform 800ms cubic-bezier(.44,.65,.07,1.01)",
         gap: "10px",
         focus: "center",
+        arrows: false,
       }}
     >
       {slides.map((item, index) => (

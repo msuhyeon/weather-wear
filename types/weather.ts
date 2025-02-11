@@ -30,12 +30,22 @@ export interface WeatherData {
 
 export type Gender = "male" | "female";
 
+type Coordination = {
+  category: string;
+  imageKey: string;
+  description: string;
+};
+
 export interface RecommendationData {
-  gender: Gender;
-  currentTemperature: number;
-  min_temp: number;
-  max_temp: number;
-  clothing: Record<Gender, string[]>;
+  advice: string;
+  recommendations: [
+    outerwear: Coordination,
+    top: Coordination,
+    bottom: Coordination,
+    footwear: Coordination,
+    accessories: Coordination
+  ];
+  stylingTips: string;
 }
 
 export interface Options {

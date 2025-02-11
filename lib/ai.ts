@@ -4,7 +4,7 @@ export async function getAIRecommendation(
   sensitivity: string,
   styles: string[]
 ) {
-  const response = await fetch("/api/recommendation", {
+  const response = await fetch("/api/result", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ temperature, gender, sensitivity, styles }),

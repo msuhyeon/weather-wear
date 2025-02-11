@@ -12,15 +12,14 @@ export async function POST(req: NextRequest) {
     }
 
     const { temperature, gender, sensitivity, style } = await req.json();
-
     const openai = new OpenAI({ apiKey });
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o-2024-08-06",
+      model: "gpt-3.5-turbo",
       messages: [
         {
           role: "system",
-          content: `너는 패션 스타일리스트야. 패션 매거진체, 친근하면서도 전문적인 말투, 특징적인 문장구조, 트렌디한 요소를 활용해서 작성해줘. 
+          content: `너는 패션 스타일리스트야. 패션 매거진체, 친근하면서도 전문적인 말투, 특징적인 문장 구조, 트렌디한 요소를 활용해서 작성해줘. 
           패션 매거진체(예: "~하면서도", "~해보세요", "실루엣을 연출해보세요", "포인트를 더해주세요").
           친근하면서 전문적인 말투 (예: "~한답니다.", "~이에요") 
           특징적인 문장구조(예: 짧은 문장보단 은유와 수식어구 사용 "차가운 공기가 스며드는 겨울철")
@@ -42,78 +41,57 @@ export async function POST(req: NextRequest) {
               }
             ]
             )
-            각 카테고리 별로 0번째 키워드는 내가 제시한 키워드만 산출물로 나오도록 제한을 둘게. 코디 추천 내용도 제한한 키워드를 바탕으로 써줘야해.
+            각 스타일 별 imageKey는 내가 제시한 키워드만 산출물로 나오도록 제한을 둘게. 코디 추천 내용도 내가 제한한 키워드를 바탕으로 써줘야해.
             키워드는 다음과 같아.
             {
               "outerwear": ["coat", "puffer", "jacket", "cardigan", "light_padded"],
               "top": ["shirt", "tshirt", "longsleeve", "sweater", "hoodie"],
-              "bottom": ["jeans", "slacks", "skirt", "leggings", "shorts"],
+              "bottom": ["jeans", "slacks", "skirt", "shorts"],
               "footwear": ["sneakers", "boots", "loafers", "sandals", "heels"],
-              "accessories": ["scarf", "gloves", "hat", "earmuffs", "bag"]
+              "accessories": ["scarf", "gloves", "hat", "earmuffs"]
             }
-          `,
+       
+          그리고 응답의 프로퍼티는
+           {
+              advice: "날씨 관련 짧은 어드바이스",
+              recommendations: [
+                outerwear: {
+                  description: "추천 아우터",
+                  type: "string",
+                },
+                top: {
+                  description: "추천 상의",
+                  type: "string",
+                },
+                bottom: {
+                  description: "추천 하의",
+                  type: "string",
+                },
+                footwear: {
+                  description: "추천 신발",
+                  type: "string",
+                },
+                accessories: {
+                  description: "추천 액세서리",
+                  type: "string",
+                },
+              ]
+              stylingTips: "스타일링 팁",
+              }
+            } 이런 구조로 되어있어야해.
+
+          JSON 외 다른 문장은 절대 출력하지 마!`,
         },
         {
           role: "user",
           content: `날씨: ${temperature}도, 성별: ${gender}, 추위 민감도: ${sensitivity}, 스타일: ${style}`,
         },
       ],
-      response_format: {
-        type: "json_schema",
-        json_schema: {
-          name: "fashion_recommendation",
-          schema: {
-            type: "object",
-            properties: {
-              advice: {
-                description: "날씨 관련 짧은 조언",
-                type: "string",
-              },
-              outerwear: {
-                description: "추천 아우터",
-                type: "string",
-              },
-              top: {
-                description: "추천 상의",
-                type: "string",
-              },
-              bottom: {
-                description: "추천 하의",
-                type: "string",
-              },
-              footwear: {
-                description: "추천 신발",
-                type: "string",
-              },
-              accessories: {
-                description: "추천 액세서리",
-                type: "string",
-              },
-              stylingTips: {
-                description: "스타일링 팁",
-                type: "string",
-              },
-            },
-            required: [
-              "advice",
-              "outerwear",
-              "top",
-              "bottom",
-              "footwear",
-              "accessories",
-              "stylingTips",
-            ],
-          },
-        },
-      },
     });
 
     const content = completion.choices[0].message.content;
 
-    console.log("content: ", content);
-
     let jsonResponse;
-
     try {
       jsonResponse =
         typeof content === "string" ? JSON.parse(content) : content;

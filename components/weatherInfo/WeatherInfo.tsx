@@ -14,8 +14,6 @@ const WeatherInfo = () => {
 
   const { data, error, isError } = useWeather();
 
-  console.log("data-", data);
-
   if (isError) {
     throw error;
   }

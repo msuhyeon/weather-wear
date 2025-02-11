@@ -9,6 +9,17 @@ export async function GET(req: NextRequest) {
   const lat = searchParams.get("lat");
   const lon = searchParams.get("lon");
 
+  if (!lat || !lon) {
+    return NextResponse.json(
+      {
+        error: "위도 및 경도 값이 존재하지 않습니다.",
+      },
+      {
+        status: 500,
+      }
+    );
+  }
+
   if (!API_KEY) {
     return NextResponse.json(
       { error: "API키가 존재하지 않습니다." },
@@ -35,9 +46,18 @@ export async function GET(req: NextRequest) {
       const response = await fetch(
         `${WEATHER_BASE_URL}?lat=${lat}&lon=${lon}&lang=kr&exclude=minutely,alerts&units=metric&appid=${API_KEY}`
       );
-      if (!response.ok) throw new Error("날씨 데이터 호출을 실패했습니다.");
-
+      if (!response.ok) {
+        throw new Error(
+          `날씨 데이터 요청 실패: ${response.status} ${response.statusText}`
+        );
+      }
       const weatherData = await response.json();
+
+      // CORS issue
+      const headers = new Headers();
+      headers.set("Access-Control-Allow-Origin", "*");
+      headers.set("Access-Control-Allow-Methods", "GET, OPTIONS");
+
       return NextResponse.json(weatherData);
     }
 

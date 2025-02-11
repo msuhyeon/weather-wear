@@ -20,7 +20,7 @@ const WeatherInfo = () => {
     throw error;
   }
 
-  if (!data || !data.current) {
+  if (!data) {
     return (
       <div className={styles.weatherCard}>
         <Skeleton height={130} width={130} />
@@ -45,7 +45,7 @@ const WeatherInfo = () => {
   return (
     <div className={styles.weatherCard}>
       <Image
-        src={`https://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`}
+        src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
         alt="weather icon"
         width={130}
         height={130}
@@ -56,14 +56,14 @@ const WeatherInfo = () => {
       <div className={styles.weatherInfoWrap}>
         {/* <h2 className={styles.title}>현재 날씨</h2> */}
         <div className={styles.titleWrap}>
-          <h2 className={styles.title}>[현재 위치명]</h2>
+          <h2 className={styles.title}>{data.name}</h2>
           <CompassIcon />
         </div>
-        <p className={styles.currentTemp}>{Math.round(data.current.temp)} °C</p>
-        <p className={styles.info}>{data.current.weather[0].description}</p>
+        <p className={styles.currentTemp}>{Math.round(data.main.temp)} °C</p>
+        <p className={styles.info}>{data.weather[0].description}</p>
         <p className={styles.info}>
           <span>체감온도 </span>
-          {Math.round(data.current.feels_like)} °C
+          {Math.round(data.main.feels_like)} °C
         </p>
       </div>
     </div>

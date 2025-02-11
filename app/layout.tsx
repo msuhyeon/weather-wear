@@ -2,16 +2,16 @@ import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import ClientProviders from "@/components/ClientProvider";
-import { Playfair_Display } from "next/font/google";
+// import { Playfair_Display } from "next/font/google";
 
 import HamburgerMenu from "@/components/hamburgerMenu/HamburgerMenu";
 import "./globals.css";
 import styles from "./layout.module.css";
 
-const playfiarDisplay = Playfair_Display({
-  subsets: ["latin"],
-  display: "swap",
-});
+// const playfiarDisplay = Playfair_Display({
+//   subsets: ["latin"],
+//   display: "swap",
+// });
 
 export const metadata: Metadata = {
   title: "WeatherWear",
@@ -47,7 +47,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className={playfiarDisplay.className}>
+      {/* <body className={playfiarDisplay.className}> */}
+      <body>
         <React.StrictMode>
           <ClientProviders>
             <div className={styles.container}>

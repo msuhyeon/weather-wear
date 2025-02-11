@@ -20,7 +20,7 @@ const Result = () => {
   const isFetched = useRef(false);
 
   useEffect(() => {
-    if (!data || !data.current) return;
+    if (!data) return;
     fetchRecommendation();
 
     isFetched.current = true;

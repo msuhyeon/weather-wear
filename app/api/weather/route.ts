@@ -44,8 +44,9 @@ export async function GET(req: NextRequest) {
     if (lat && lon) {
       // 위도, 경도로 날씨 데이터 가져오기
       const response = await fetch(
-        `${WEATHER_BASE_URL}?lat=${lat}&lon=${lon}&lang=kr&exclude=minutely,alerts&units=metric&appid=${API_KEY}`
+        `${WEATHER_BASE_URL}?lat=${lat}&lon=${lon}&appid=${API_KEY}`
       );
+
       if (!response.ok) {
         throw new Error(
           `날씨 데이터 요청 실패: ${response.status} ${response.statusText}`
@@ -64,6 +65,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "호출 파라미터 오류" }, { status: 400 });
   } catch (error: unknown) {
     console.error("[/api/weather] GET API 에러:", error);
+    console.log(`check key: ${API_KEY}`);
 
     if (error instanceof Error) {
       return NextResponse.json({ error: error.message }, { status: 500 });

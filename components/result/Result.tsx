@@ -21,8 +21,8 @@ const Result = () => {
 
   useEffect(() => {
     if (!data) return;
-    fetchRecommendation();
 
+    fetchRecommendation();
     isFetched.current = true;
   }, [data]);
 

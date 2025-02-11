@@ -1,4 +1,4 @@
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+const API_KEY = process.env.API_KEY;
 const GEO_BASE_URL = "http://api.openweathermap.org/geo/1.0/direct";
 const WEATHER_BASE_URL = "https://api.openweathermap.org/data/3.0/onecall";
 

@@ -3,7 +3,17 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css"; // ✅ 기본 스타일 불러오기
 import styles from "./styles.module.css";
 
-const SplideCarousel = ({ slides }) => {
+interface RecommendationItem {
+  category: string;
+  imageKey: string;
+  description: string;
+}
+
+interface SplideCarouselProps {
+  slides: RecommendationItem[];
+}
+
+const SplideCarousel: React.FC<SplideCarouselProps> = ({ slides }) => {
   return (
     <Splide
       options={{

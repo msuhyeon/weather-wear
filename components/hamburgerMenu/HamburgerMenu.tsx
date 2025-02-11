@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import CancelIcon from "@mui/icons-material/Cancel";
+// import SearchIcon from "@mui/icons-material/Search";
+// import CancelIcon from "@mui/icons-material/Cancel";
 import CloseIcon from "@mui/icons-material/Close";
 import styles from "./styles.module.css";
 import RecentSearches from "./RecentSearches";
@@ -11,7 +11,7 @@ import RecentSearches from "./RecentSearches";
 export default function HamburgerMenu() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
-  const [cityInput, setCityInput] = useState("");
+  // const [cityInput, setCityInput] = useState("");
 
   const handleHamburgerClick = (): void => {
     setIsNavOpen(!isNavOpen);
@@ -34,17 +34,17 @@ export default function HamburgerMenu() {
     };
   }, [isNavOpen]);
 
-  const handleChange = (e) => {
-    setCityInput(e.target.value);
-  };
+  // const handleChange = (e) => {
+  //   setCityInput(e.target.value);
+  // };
 
-  const handleSearch = () => {
-    // 검색 api 호출
-  };
+  // const handleSearch = () => {
+  //   // 검색 api 호출
+  // };
 
-  const handleReset = () => {
-    setCityInput("");
-  };
+  // const handleReset = () => {
+  //   setCityInput("");
+  // };
 
   const handleClose = () => {
     setIsNavOpen(!isNavOpen);

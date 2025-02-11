@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 
 export default function RecentSearches() {
   //   const recentSearches =useSearchStore((state) => state.recentSearches);
-  const recentSearches = [{}];
+  // const recentSearches = [{}];
 
   return (
     <div className={styles.recentSearches}>

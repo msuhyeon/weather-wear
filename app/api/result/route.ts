@@ -4,9 +4,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const apiKey = process.env.OPENAI_API_KEY;
+
     if (!apiKey) {
       return NextResponse.json(
-        { error: "API Key is missing!" },
+        { error: "API key가 존재하지 않습니다." },
         { status: 500 }
       );
     }

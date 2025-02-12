@@ -30,9 +30,10 @@ export const metadata: Metadata = {
     siteName: "WeatherWear",
     images: [
       {
-        url: "",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
+        alt: "WeatherWear 대표 이미지",
       },
     ],
     locale: "ko_KR",

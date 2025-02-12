@@ -39,34 +39,7 @@
   font-size: 30px;
 }
 
-.innerForm {
-  display: flex;
-  padding: 11px 13px;
-  border: 1px solid #000;
-  background: #fff;
-  border-radius: 7px;
-}
-
-.inputForm {
-  border: none;
-  width: 100%;
-}
 /* 
 .resetButton {
 
 } */
-
-.resetButton,
-.searchButton {
-  width: 30px;
-  display: flex;
-  justify-content: flex-end;
-  border: none;
-  background: #fff;
-}
-
-.locationList {
-}
-
-.location {
-}

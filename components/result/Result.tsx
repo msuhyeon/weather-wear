@@ -50,6 +50,13 @@ const Result = () => {
     }
   };
 
+  // debugging code
+  useEffect(() => {
+    if (process.env.NODE_ENV === "development") {
+      console.log("Updated coordination:", coordination);
+    }
+  }, [coordination]);
+
   return (
     <>
       <h2 className={styles.title}>오늘의 추천🧚‍♂️ </h2>

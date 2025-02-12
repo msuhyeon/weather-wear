@@ -44,7 +44,7 @@ export async function GET(req: NextRequest) {
     if (lat && lon) {
       // 위도, 경도로 날씨 데이터 가져오기
       const response = await fetch(
-        `${WEATHER_BASE_URL}?lat=${lat}&lon=${lon}&lang=kr&appid=${API_KEY}`
+        `${WEATHER_BASE_URL}?lat=${lat}&lon=${lon}&lang=kr&units=metric&appid=${API_KEY}`
       );
 
       if (!response.ok) {

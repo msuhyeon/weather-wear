@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
         },
         {
           role: "user",
-          content: `날씨: ${temperature}도, 성별: ${gender}, 추위 민감도: ${sensitivity}, 스타일: ${style}`,
+          content: `날씨: 섭씨 ${temperature}도, 성별: ${gender}, 추위 민감도: ${sensitivity}, 스타일: ${style}`,
         },
       ],
     });

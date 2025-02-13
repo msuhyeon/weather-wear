@@ -54,7 +54,7 @@ const WeatherInfo = () => {
       <div className={styles.weatherInfoWrap}>
         {/* <h2 className={styles.title}>현재 날씨</h2> */}
         <div className={styles.titleWrap}>
-          <h2 className={styles.title}>{data.name}</h2>
+          <h2 className={styles.title}>{data.cityName[0].local_names.ko}</h2>
           <CompassIcon />
         </div>
         <p className={styles.currentTemp}>{Math.round(data.main.temp)} °C</p>
@@ -69,47 +69,3 @@ const WeatherInfo = () => {
 };
 
 export default WeatherInfo;
-
-// const WeatherInfo: React.FC = () => {
-//   const queryClient = useQueryClient();
-
-//   return (
-//     <ErrorBoundary
-//       FallbackComponent={ErrorFallback}
-//       onReset={async () => {
-//         // 캐시 된 쿼리 무효화
-//         await queryClient.invalidateQueries({ queryKey: ["weather"] });
-//       }}
-//     >
-//       <WeatherDisplay />
-//     </ErrorBoundary>
-//   );
-// };
-
-// const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
-//   const [isRetrying, setIsRetrying] = useState(false);
-
-//   const handleRetry = async () => {
-//     // 별도의 async 함수로 분리
-//     setIsRetrying(true);
-//     try {
-//       resetErrorBoundary();
-//     } finally {
-//       setIsRetrying(false);
-//     }
-//   };
-
-//   return (
-//     <div className={styles.errorContainer}>
-//       {/* <p className={styles.errorText}>날씨 정보를 가져오는데 실패했습니다.</p> */}
-//       <p className={styles.errorMessage}>{error.message}</p>
-//       <button
-//         onClick={handleRetry}
-//         disabled={isRetrying}
-//         className={styles.retryButton}
-//       >
-//         {isRetrying ? "재시도 중..." : "날씨 정보 다시 가져오기"}
-//       </button>
-//     </div>
-//   );
-// };

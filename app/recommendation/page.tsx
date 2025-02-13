@@ -78,7 +78,6 @@ const Recommendation: React.FC = () => {
       } else if (prev.length < 3) {
         return [...prev, id];
       }
-      console.log("prev-", prev);
       return prev;
     });
   };

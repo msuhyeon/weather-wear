@@ -1,3 +1,5 @@
+import { getLocationName } from "./geoUtils";
+
 interface Coordinates {
   lat: number;
   lon: number;
@@ -28,5 +30,8 @@ export const fetchWeather = async ({ lat, lon }: Coordinates) => {
     throw new Error("날씨를 불러오는데 실패했어요..😭");
   }
 
-  return response.json();
+  const data = await response.json();
+  const cityName = await getLocationName(lat, lon, data.name);
+
+  return { ...data, cityName };
 };

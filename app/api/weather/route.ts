@@ -65,7 +65,6 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "호출 파라미터 오류" }, { status: 400 });
   } catch (error: unknown) {
     console.error("[/api/weather] GET API 에러:", error);
-    console.log(`check key: ${API_KEY}`);
 
     if (error instanceof Error) {
       return NextResponse.json({ error: error.message }, { status: 500 });

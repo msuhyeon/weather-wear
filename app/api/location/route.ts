@@ -3,7 +3,6 @@ const API_KEY = process.env.API_KEY;
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const locationName = searchParams.get("location");
   const lat = searchParams.get("lat");
   const lon = searchParams.get("lon");
 

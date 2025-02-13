@@ -1,11 +1,5 @@
-export async function getCoordinates(query: { city?: string; name?: string }) {
-  const searchParams = new URLSearchParams();
-
-  if (query.city) {
-    searchParams.append("city", query.city);
-  }
-
-  const response = await fetch(`/api/geocode?${searchParams.toString()}`);
+export async function getCoordinates(city?: string) {
+  const response = await fetch(`/api/geocode?${city}`);
 
   if (!response.ok) {
     throw new Error("도시 검색을 실패했습니다.");

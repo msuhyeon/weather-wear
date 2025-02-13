@@ -54,7 +54,7 @@ const WeatherInfo = () => {
       <div className={styles.weatherInfoWrap}>
         {/* <h2 className={styles.title}>현재 날씨</h2> */}
         <div className={styles.titleWrap}>
-          <h2 className={styles.title}>{data.cityName[0].local_names.ko}</h2>
+          <h2 className={styles.title}>{data?.cityName[0]?.local_names?.ko}</h2>
           <CompassIcon />
         </div>
         <p className={styles.currentTemp}>{Math.round(data.main.temp)} °C</p>

@@ -5,13 +5,22 @@ import styles from "./styles.module.css";
 import { getCoordinates } from "@/lib/geoUtils";
 import SearchIcon from "@mui/icons-material/Search";
 import CancelIcon from "@mui/icons-material/Cancel";
+
+interface City {
+  name: string;
+  local_names: { ko?: string };
+  lat: number;
+  lon: number;
+  country: string;
+}
+
 export default function Search() {
   const [cityInput, setCityInput] = useState("");
-  const [cityList, setCityList] = useState<any[]>([]);
+  const [cityList, setCityList] = useState<City[]>([]);
 
   const handleSearch = async () => {
     const response = await getCoordinates(cityInput);
-    setCityList(response);
+    setCityList(Array.isArray(response) ? response : []);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,11 +51,11 @@ export default function Search() {
           <SearchIcon />
         </button>
       </fieldset>
-      {cityList && (
+      {cityList.length > 0 && (
         <ul className={styles.locationList}>
           {cityList.map((item, index) => (
             <li className={styles.location} key={index}>
-              <button type="button">{item.local_names.ko}</button>
+              <button type="button">{item.local_names?.ko || item.name}</button>
             </li>
           ))}
         </ul>

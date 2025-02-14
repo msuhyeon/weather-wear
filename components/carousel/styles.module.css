@@ -1,6 +1,6 @@
 .card {
-  width: 220px !important;
-  height: 285px;
+  /* width: 220px !important; */
+  /* height: 285px; */
   border-radius: 13px;
   border: 1px solid #ffb347;
   padding: 1rem;
@@ -18,4 +18,21 @@
   line-height: 1.5;
   font-size: 0.9rem;
   color: #000;
+}
+
+.swiperWrapper {
+  position: relative;
+}
+
+.swiper-navigation {
+  position: absolute !important;
+  bottom: 0 !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 10% !important;
+  background: none !important;
+  border: none !important;
 }

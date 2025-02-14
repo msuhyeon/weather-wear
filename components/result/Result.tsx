@@ -6,7 +6,7 @@ import Skeleton from "react-loading-skeleton";
 import { Sensitivity, RecommendationData, Gender } from "@/types/weather";
 import { useWeather } from "../../app/hook/useWeather";
 import { getAIRecommendation } from "@/lib/ai";
-import SplideCarousel from "@/components/carousel/SplideCarousel";
+import Carousel from "@/components/carousel/Carousel";
 import styles from "./styles.module.css";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -69,7 +69,7 @@ const Result = () => {
             </div>
             {coordination && (
               <>
-                <SplideCarousel slides={coordination.recommendations} />
+                <Carousel slides={coordination.recommendations} />
                 <div>
                   <span className={styles.tipTitle}>Tips!</span>
                   <p className={styles.tipContents}>

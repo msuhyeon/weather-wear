@@ -34,7 +34,7 @@ const Carousel: React.FC<CarouselProps> = ({ slides }) => {
         centeredSlides={true}
         loop={true}
         pagination={{ clickable: true }}
-        navigation={{ nextEl: prevRef.current, prevEl: nextRef.current }}
+        // navigation={{ nextEl: prevRef.current, prevEl: nextRef.current }}
         onSwiper={(swiper) => {
           if (swiperRef.current) {
             swiperRef.current.swiper = swiper;
@@ -57,14 +57,14 @@ const Carousel: React.FC<CarouselProps> = ({ slides }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className={styles.swiperNavigation}>
+      {/* <div className={styles.swiperNavigation}>
         <button ref={prevRef} className={styles.swiperButtonPrev}>
           <KeyboardArrowLeftIcon />
         </button>
         <button ref={nextRef} className={styles.swiperButtonNext}>
           <KeyboardArrowRightIcon />
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

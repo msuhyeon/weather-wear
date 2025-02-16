@@ -5,8 +5,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import type { SwiperRef } from "swiper/react";
 import styles from "./styles.module.css";
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+// import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+// import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 interface RecommendationItem {
   category: string;
@@ -20,8 +20,8 @@ interface CarouselProps {
 
 const Carousel: React.FC<CarouselProps> = ({ slides }) => {
   const swiperRef = useRef<SwiperRef | null>(null);
-  const prevRef = useRef<HTMLButtonElement | null>(null);
-  const nextRef = useRef<HTMLButtonElement | null>(null);
+  // const prevRef = useRef<HTMLButtonElement | null>(null);
+  // const nextRef = useRef<HTMLButtonElement | null>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   return (

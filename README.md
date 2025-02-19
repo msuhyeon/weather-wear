@@ -9,3 +9,6 @@
 
 ## 🛠️ 기술 스택
 `React.js` `Next.js` `Supabase`
+
+## 👀 주요 페이지
+![ImageToStl com_merged-document](https://github.com/user-attachments/assets/50c7c976-1bb0-413d-a7a6-e0a7c6c6a486)

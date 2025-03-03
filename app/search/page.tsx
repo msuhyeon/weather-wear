@@ -31,6 +31,8 @@ export default function Search() {
     setCityInput("");
   };
 
+  const handleSelectCity = () => {};
+
   return (
     <div>
       <fieldset className={styles.innerForm}>
@@ -55,7 +57,13 @@ export default function Search() {
         <ul className={styles.locationList}>
           {cityList.map((item, index) => (
             <li className={styles.location} key={index}>
-              <button type="button">{item.local_names?.ko || item.name}</button>
+              <button
+                className={styles.locationButton}
+                type="button"
+                onClick={handleSelectCity}
+              >
+                {item.local_names?.ko || item.name}
+              </button>
             </li>
           ))}
         </ul>

@@ -31,6 +31,17 @@
 }
 
 .location {
+  background: #fff;
+}
+
+.locationButton {
   padding: 1rem;
-  border: 1px solid #000;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+
+  &:hover {
+    font-weight: 700;
+  }
 }

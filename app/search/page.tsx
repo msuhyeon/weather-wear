@@ -18,7 +18,8 @@ export default function Search() {
   const [cityInput, setCityInput] = useState("");
   const [cityList, setCityList] = useState<City[]>([]);
 
-  const handleSearch = async () => {
+  const handleSearch = async (e?: React.FormEvent<HTMLFormElement>) => {
+    e?.preventDefault();
     const response = await getCoordinates(cityInput);
     setCityList(Array.isArray(response) ? response : []);
   };
@@ -35,24 +36,28 @@ export default function Search() {
 
   return (
     <div>
-      <fieldset className={styles.innerForm}>
+      <form className={styles.innerForm} onSubmit={handleSearch}>
         <input
           type="text"
           className={styles.inputForm}
           placeholder="어느 도시의 날씨가 궁금하세요?"
-          title="도시 이름 검색  "
+          title="도시 이름 검색"
           value={cityInput}
           onChange={handleChange}
         />
         {cityInput.length > 0 && (
-          <button className={styles.resetButton} onClick={handleReset}>
+          <button
+            className={styles.resetButton}
+            type="button"
+            onClick={handleReset}
+          >
             <CancelIcon />
           </button>
         )}
-        <button className={styles.searchButton} onClick={handleSearch}>
+        <button className={styles.searchButton} type="submit">
           <SearchIcon />
         </button>
-      </fieldset>
+      </form>
       {cityList.length > 0 && (
         <ul className={styles.locationList}>
           {cityList.map((item, index) => (

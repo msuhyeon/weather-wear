@@ -1,6 +1,6 @@
 # WeatherWear
 
-이 프로젝트는 사용자의 현재 기온에 적합한 의상을 추천해줍니다. 사용자가 성별과 추위 민감도를 입력하면, 기온을 확인하고 미리 정의된 기온 범위에 따라 적절한 코디를 제안합니다.
+이 프로젝트는 사용자의 현재 기온에 적합한 의상을 추천해줍니다. 사용자가 성별과 추위 민감도를 입력하면, 기온을 확인하고 미리 정의된 기온 범위에 따라 적절한 코디를 제안합니다. 🔆 [WeatherWear](https://weather-wear-theta.vercel.app/)
 
 ## 🧑‍💻 기능
 - 위치 기반 날씨 정보 수집: 사용자의 현재 위치를 기반으로 실시간 기온과 날씨 데이터를 수집합니다.
@@ -9,6 +9,8 @@
 
 ## 🛠️ 기술 스택
 `React.js` `Next.js` `Supabase`
+
+
 
 ## 👀 주요 페이지
 ![ImageToStl com_merged-document](https://github.com/user-attachments/assets/50c7c976-1bb0-413d-a7a6-e0a7c6c6a486)
